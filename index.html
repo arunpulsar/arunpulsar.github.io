@@ -1129,7 +1129,7 @@ async function sendAT(cmd) {
 
     function send_command_check() {
       tids_trace_reset();
-      log('Sending command. Please wait...');
+      log(' → Sending command. Please wait...');
       if(document.getElementById("cmd").value == 'AT+PT=0') {
         setTimeout(ptModeOFF1, 3000);
       }
