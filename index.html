@@ -237,7 +237,7 @@ function sleep(ms) {
     }
 
     function trace_start() {
-      if((login_stage == 3) && (isDisconnecting == 0) && (isTraceOn == 0) && (presysState == 2)) {
+      if((login_stage == 3) && (isDisconnecting == 0) && ((isTraceOn == 0) || (presysState == 2))) {
         tids_trace_reset();
         // settings_clear();
         document.getElementById('btn_trace').innerHTML ='TRACE OFF';
@@ -516,12 +516,13 @@ function sleep(ms) {
       if(login_stage >= 1) {
         isIgnore=0;        
         if(login_stage == 4){
-          log(" → Press Trace OFF to get params");
-          return;
+          // log(" → Press Trace OFF to get params");
+          // return;
+          send_command_check();
         }else{
           sendAT(document.getElementById('cmd').value); 
-        }        
-        button_press = 8;
+          button_press = 8;
+        }
       }
       else {
         log('No device connected!');
@@ -1125,6 +1126,26 @@ async function sendAT(cmd) {
         log('Failed: ' + error);
       }
     }
+
+    function send_command_check() {
+      tids_trace_reset();
+      log('Sending command. Please wait...');
+      if(document.getElementById("cmd").value == 'AT+PT=0') {
+        setTimeout(ptModeOFF1, 3000);
+      }
+      else if (document.getElementById("cmd").value.startsWith("AT")) {
+        setTimeout(ptModeOFF1, 3000);
+        setTimeout(sendcommand, 5000);
+        setTimeout(ptModeON1, 7000);
+        setTimeout(restart_trace_after_send, 9000);
+      }
+      else {
+        setTimeout(sendcommand, 3000);
+        setTimeout(restart_trace_after_send, 5000);
+      }
+    }
+
+
     // If enter key was pressed by user while editing, send command immediately
     function wasEnter(elem) {
       if(event.key == 'Enter') {
@@ -1137,12 +1158,14 @@ async function sendAT(cmd) {
           }
 
           if(login_stage == 4) {
-    	      log(" → Press Trace OFF to get params");
-    	      return;
+    	      // log(" → Press Trace OFF to get params");
+    	      // return;
+            send_command_check();
+
 	        } else {
-            button_press = 8;
             sendAT(document.getElementById("cmd").value);
-          }
+            button_press = 8;
+          }    
         }
         else {
           log('No device connected!');
@@ -1167,8 +1190,30 @@ async function sendAT(cmd) {
       settings_msg_clear();
     }
 
+    function ptModeON1() {
+      sendAT('AT+PT=1');
+      button_press = 8;
+    }
+
+    function sendcommand() {
+      sendAT(document.getElementById("cmd").value);
+      button_press = 8;
+    }
+
+    function restart_trace_after_send() {
+      button_press=10; 
+      trace_off();
+    }
+
     function ptModeOFF() {
       sendAT('AT+PT=0');
+      login_stage = 2;
+    }
+
+    function ptModeOFF1() {
+      sendAT('AT+PT=0');
+      login_stage = 2;
+      button_press = 8;
     }
 
     function bluetooth_param_check() {
@@ -1231,6 +1276,7 @@ async function sendAT(cmd) {
         }
       } else {
         log('No device connected!');
+        alert('No device connected!');
       }
     }
 
@@ -1356,6 +1402,7 @@ async function sendAT(cmd) {
         }
       } else {
         log('Device not in Normal mode!');
+        alert('Device not in Normal mode!');
       }
     }
   
