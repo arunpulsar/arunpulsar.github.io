@@ -68,7 +68,7 @@
   
   .slider:hover {
     opacity: 1;
-    background: #FFCE34;
+    background: #E4ECED;
   }
   
   .slider::-webkit-slider-thumb {
@@ -76,7 +76,7 @@
     appearance: none;
     width: 50px;
     height: 50px;
-    background: #F37021;
+    background: #15BEF0;
     cursor: pointer;
   }
   
