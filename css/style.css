@@ -102,6 +102,7 @@ body{
   text-align:center;
   background-attachment:fixed;   */
   /* background: url("../img/pexels-photo-2259232.jpeg") no-repeat center center fixed; */
+  background: #c5c7c4	;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -120,6 +121,7 @@ body{
 @media screen and (min-width: 10px) {
   body {
     /* background: url(../img/pexels-photo-2259232.jpeg) no-repeat center center fixed; */
+    background: #c5c7c4	;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
