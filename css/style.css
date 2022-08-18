@@ -1,7 +1,7 @@
  
 body{
   /* font-family: 'Jura', sans-serif; */
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family:'Segoe UI' 
      }
   h1,h2,h3,h4,h5,h6{
   padding:0;
@@ -101,7 +101,7 @@ body{
   min-height:100%;
   text-align:center;
   background-attachment:fixed;   */
-  /* background: url("../img/pexels-photo-2259232.jpeg") no-repeat center center fixed; */
+  /* background: url("../img/reflect_background.jpeg") no-repeat center center fixed; */
   background: #c5c7c4	;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -118,10 +118,37 @@ body{
   }
 } */
 
+@font-face {
+  font-family: 'Segoe UI Normal';
+  src:url('../fonts/segoeui.ttf') format('ttf'),
+      url('../fonts/segoeui.woff') format('woff'),
+      url('../fonts/segoeui.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+  }
+
+@font-face {
+  font-family: 'Segoe UI SemiBold';
+  src:url('../fonts/segoeuisemibold.ttf') format('ttf'),
+      url('../fonts/segoeuisemibold.woff') format('woff'),
+      url('../fonts/segoeuisemibold.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Segoe UI Bold';
+    src:url('../fonts/segoeuibold.ttf') format('ttf'),
+        url('../fonts/segoeuibold.woff') format('woff'),
+        url('../fonts/segoeuibold.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+    }
+
 @media screen and (min-width: 10px) {
   body {
-    /* background: url(../img/pexels-photo-2259232.jpeg) no-repeat center center fixed; */
-    background: #c5c7c4	;
+    /* background: url(../img/reflect_background.jpeg) no-repeat center center fixed; */
+  background: #c5c7c4	;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
